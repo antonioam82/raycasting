@@ -1,21 +1,38 @@
 import pygame
 from pygame.locals import *
 import math as m
+import sys
 
-win_width, win_height = (1600, 900)
+win_width, win_height = (1598,870)#(1600, 900)
 fps = 165 # 165hz monitor btw the way
 display = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption("Raycasting")
 clock = pygame.time.Clock()
 
-environment = [
+'''environment = [
     [1, 1, 1, 1, 1],
     [1, 0, 0, 0, 1],
     [1, 0, 1, 0, 1],
     [1, 0, 0, 0, 1],
     [1, 1, 1, 1, 1],
+]'''
+environment = [
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+[1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
+[1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+[1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1],
+[1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
+[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+[1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
+[1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1],
+[1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+[1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
-fov = 80
+    
+fov = 80#80
 xpos, ypos = (1, 1)
 rot_r = 0
 
@@ -35,6 +52,8 @@ while run:
     for e in pygame.event.get():
         if e.type == QUIT:
             run = False
+            pygame.quit()
+            sys.exit()
         
         if e.type == KEYDOWN:
             if e.key == pygame.K_w:
@@ -77,7 +96,9 @@ while run:
         while True:
             x, y = (x + cos, y + sin)
             j += 1
+            #print(environment[int(x)][int(y)])
             if environment[int(x)][int(y)] != 0:
+                
                 tile = environment[int(x)][int(y)]
                 d = j
                 j = j * m.cos(m.radians(i-fov/2))
@@ -90,3 +111,4 @@ while run:
                          (i*(win_width/fov), (win_height/2) + height), # pos 1
                          (i*(win_width/fov), (win_height/2) - height), # pos 2
                          width=int(win_width/fov))
+
