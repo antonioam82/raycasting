@@ -23,7 +23,7 @@ environment = [
 [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
 [1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1],
 [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
-[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
 [1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1],
 [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
@@ -31,6 +31,7 @@ environment = [
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
+print(environment[6][6])
     
 fov = 80#80
 xpos, ypos = (1, 1)
@@ -42,6 +43,13 @@ move_speed = 0.01
 precision = 0.02
 
 wk, sk, ak, dk = False, False, False, False
+
+def put():
+    global environment
+    if environment[6][6] == 1:
+        environment[6][6] = 0
+    else:
+        environment[6][6] = 1
 
 run = True
 while run:
@@ -73,6 +81,8 @@ while run:
                 ak = False
             if e.key == pygame.K_d:
                 dk = False
+            if e.key == pygame.K_p:
+                put()
 
     x, y = (xpos, ypos)
     if wk == True:
