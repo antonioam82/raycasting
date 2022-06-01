@@ -2,8 +2,9 @@ import pygame
 from pygame.locals import *
 import math as m
 import sys
+import random
 
-win_width, win_height = (1598,870)#(1600, 900)
+win_width, win_height = (1500, 800)#(1598,870)#(1600, 900)
 fps = 165 # 165hz monitor btw the way
 display = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption("Raycasting")
@@ -23,7 +24,7 @@ environment = [
 [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
 [1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1],
 [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
-[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
 [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
 [1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1],
 [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
@@ -46,10 +47,13 @@ wk, sk, ak, dk = False, False, False, False
 
 def put():
     global environment
-    if environment[6][6] == 1:
-        environment[6][6] = 0
+    ran1 = random.randint(1,11)
+    ran2 = random.randint(1,11)
+    
+    if environment[ran1][ran2] == 1:
+        environment[ran1][ran2] = 0
     else:
-        environment[6][6] = 1
+        environment[ran1][ran2] = 1
 
 run = True
 while run:
